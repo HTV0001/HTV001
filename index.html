@@ -5,7 +5,6 @@
 <title>Henbadhoo Television</title>
 
 <style>
-
 /* Dhivehi Font */
 @font-face {
     font-family: "Eamaan";
@@ -112,7 +111,6 @@ footer {
     color:#888;
     margin-top:40px;
 }
-
 </style>
 </head>
 
@@ -132,7 +130,12 @@ Broadcasting with integrity, creativity, and cultural pride. 🌊✨
 
 <div class="section" id="live">
 <h2>🔴 Live Stream</h2>
-<div id="liveContainer" class="live-container">Checking livestream status...</div>
+<div class="live-container">
+    <iframe id="livePlayer" width="100%" height="500" 
+        src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>
+    <p id="noLive" style="display:none;">No livestreams at the moment.</p>
+</div>
 </div>
 
 <div class="section" id="videos">
@@ -145,7 +148,6 @@ Henbadhoo Television
 </footer>
 
 <script>
-
 const API_KEY = "AIzaSyC1497MZFt9XwL1xZ1mnkpG0zGItimF-vs";
 const HANDLE = "henbadhootelevision";
 let channelId="";
@@ -163,18 +165,17 @@ async function loadLive(){
     let url=`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${API_KEY}`;
     let res=await fetch(url);
     let data=await res.json();
-    let container=document.getElementById("liveContainer");
-    if(data.items.length>0){
-        let videoId=data.items[0].id.videoId;
-        container.innerHTML=`
-            <p class="live">LIVE NOW</p>
-            <iframe width="100%" height="500" 
-                src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-            </iframe>
-        `;
+    let iframe = document.getElementById("livePlayer");
+    let noLive = document.getElementById("noLive");
+
+    if(data.items.length > 0){
+        let videoId = data.items[0].id.videoId;
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        iframe.style.display = "block";
+        noLive.style.display = "none";
     } else {
-        container.innerHTML=`<p>No livestreams at the moment.</p>`;
+        iframe.style.display = "none";
+        noLive.style.display = "block";
     }
 }
 
@@ -196,7 +197,6 @@ async function loadVideos(){
 }
 
 getChannel();
-
 </script>
 
 </body>
