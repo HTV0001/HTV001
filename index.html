@@ -21,6 +21,20 @@ font-family:TanHeadline;
 src:url("TAN-HEADLINE.otf");
 }
 
+/* Language classes */
+
+.dv{
+font-family:Eamaan;
+direction:rtl;
+text-align:right;
+}
+
+.en{
+font-family:sans-serif;
+direction:ltr;
+text-align:left;
+}
+
 /* Body */
 
 body{
@@ -30,7 +44,7 @@ background-size:cover;
 background-position:center;
 background-attachment:fixed;
 color:white;
-font-family:system-ui;
+font-family:sans-serif;
 }
 
 body::before{
@@ -58,14 +72,11 @@ padding:14px 30px;
 border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
-/* Logo area */
-
 .logo{
 display:flex;
 align-items:center;
 gap:10px;
 font-weight:bold;
-font-size:18px;
 }
 
 .logo img{
@@ -73,13 +84,12 @@ width:32px;
 height:32px;
 }
 
-/* Nav links */
-
 nav a{
 margin-left:20px;
 text-decoration:none;
 color:white;
 opacity:.8;
+font-family:sans-serif;
 }
 
 nav a:hover{
@@ -117,7 +127,7 @@ padding:20px;
 box-shadow:0 10px 40px rgba(0,0,0,.6);
 }
 
-/* Live header */
+/* Live */
 
 .live-header{
 display:flex;
@@ -131,6 +141,7 @@ background:red;
 padding:6px 10px;
 border-radius:6px;
 font-weight:bold;
+font-family:sans-serif;
 }
 
 /* Player */
@@ -157,6 +168,7 @@ background:rgba(0,0,0,.6);
 padding:6px 10px;
 border-radius:6px;
 font-weight:bold;
+font-family:sans-serif;
 }
 
 /* Chat */
@@ -182,6 +194,7 @@ border:none;
 background:rgba(255,255,255,0.1);
 color:white;
 margin-bottom:25px;
+font-family:sans-serif;
 }
 
 /* Video grid */
@@ -212,8 +225,6 @@ width:100%;
 display:block;
 }
 
-/* Dhivehi titles */
-
 .video-title{
 font-family:Eamaan;
 direction:rtl;
@@ -228,6 +239,7 @@ footer{
 text-align:center;
 padding:40px;
 opacity:.6;
+font-family:sans-serif;
 }
 
 /* Mobile */
@@ -254,32 +266,31 @@ font-size:22px;
 
 <div class="logo">
 <img src="icon.png">
-<span>HTV</span>
+<span class="en">HTV</span>
 </div>
 
 <div>
-<a href="#live">Live</a>
-<a href="#videos">Videos</a>
+<a href="#live" class="en">Live</a>
+<a href="#videos" class="en">Videos</a>
 </div>
 
 </nav>
 
 <div class="hero">
 
-<div class="bio">
+<div class="bio en">
 📺 HTV – Henbadhoo Television<br>
 Broadcasting with integrity, creativity, and cultural pride. 🌊✨
 </div>
 
 </div>
 
-
 <section class="section" id="live">
 
 <div class="live-header">
 
 <span class="live-badge">🔴 LIVE</span>
-<span>HTV Broadcast</span>
+<span class="en">HTV Broadcast</span>
 
 </div>
 
@@ -297,7 +308,7 @@ Broadcasting with integrity, creativity, and cultural pride. 🌊✨
 <iframe id="liveChat"></iframe>
 </div>
 
-<p id="noLive" style="display:none;">
+<p id="noLive" class="en" style="display:none;">
 No livestreams at the moment
 </p>
 
@@ -305,10 +316,9 @@ No livestreams at the moment
 
 </section>
 
-
 <section class="section" id="videos">
 
-<h2>Latest Videos</h2>
+<h2 class="en">Latest Videos</h2>
 
 <input class="search" placeholder="Search videos..." id="searchBar">
 
@@ -316,13 +326,9 @@ No livestreams at the moment
 
 </section>
 
-
-<footer>
-
+<footer class="en">
 Henbadhoo Television
-
 </footer>
-
 
 <script>
 
@@ -402,7 +408,7 @@ grid.innerHTML+=`
 
 <img src="${v.snippet.thumbnails.high.url}">
 
-<div class="video-title">
+<div class="video-title dv">
 
 ${v.snippet.title}
 
