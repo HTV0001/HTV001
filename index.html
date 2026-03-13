@@ -33,10 +33,6 @@ header {
     border-bottom:1px solid #222;
 }
 
-.logo {
-    width:220px;
-}
-
 /* Bio text */
 .bio {
     font-family:"TanHeadline", serif;
@@ -65,7 +61,11 @@ nav a {
     margin:auto;
 }
 
-/* Live badge */
+/* Live section */
+.live-container {
+    margin-top:20px;
+}
+
 .live {
     color:red;
     font-weight:bold;
@@ -119,8 +119,6 @@ footer {
 <body>
 
 <header>
-<img src="htv.png" class="logo">
-
 <div class="bio">
 📺 HTV – Henbadhoo Television<br>
 Broadcasting with integrity, creativity, and cultural pride. 🌊✨
@@ -134,7 +132,7 @@ Broadcasting with integrity, creativity, and cultural pride. 🌊✨
 
 <div class="section" id="live">
 <h2>🔴 Live Stream</h2>
-<div id="liveContainer">Checking livestream status...</div>
+<div id="liveContainer" class="live-container">Checking livestream status...</div>
 </div>
 
 <div class="section" id="videos">
@@ -150,7 +148,6 @@ Henbadhoo Television
 
 const API_KEY = "AIzaSyC1497MZFt9XwL1xZ1mnkpG0zGItimF-vs";
 const HANDLE = "henbadhootelevision";
-
 let channelId="";
 
 async function getChannel(){
@@ -171,9 +168,10 @@ async function loadLive(){
         let videoId=data.items[0].id.videoId;
         container.innerHTML=`
             <p class="live">LIVE NOW</p>
-            <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-            Watch the livestream on YouTube
-            </a>
+            <iframe width="100%" height="500" 
+                src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+            </iframe>
         `;
     } else {
         container.innerHTML=`<p>No livestreams at the moment.</p>`;
